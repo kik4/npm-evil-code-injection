@@ -1,2 +1,3 @@
 "use strict";
-console.log("This is good code.");
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = () => console.log("This is good code.");

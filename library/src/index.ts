@@ -1,1 +1,1 @@
-console.log("This is good code.");
+export default () => console.log("This is good code.");
