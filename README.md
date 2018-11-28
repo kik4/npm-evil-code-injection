@@ -56,7 +56,8 @@ export default () => {
 ## 2. 攻撃コードの暗号化
 
 攻撃を忍ばせるコード evil.ts を用意する前に、攻撃コードを AES 暗号化します。暗号化は node コマンドで REPL を起動させてちゃっちゃとやってしまいます。
-パスワードは description で起動させる`run evil code`、暗号化する文字列は`console.log("This is evil code.")`ですね。
+暗号化する文字列は攻撃コードである`console.log("This is evil code.")`ですね。
+パスワードは description で起動させる`run evil code`です。複合化時に実行しているパッケージのdescriptionを拾って与えることで、攻撃対象を限定します。
 
 ```js
 var cipher = require("crypto").createCipher("aes-256-cbc", "run evil code");
@@ -138,4 +139,4 @@ This is evil code.
 This is good code.
 ```
 
-description を書き換えると`This is evil code.`が出てきません。このようにして攻撃対象を絞っていたのでした。
+description を書き換えると`This is evil code.`が出てきません。攻撃対象を絞れています。
