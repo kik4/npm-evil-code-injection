@@ -13,6 +13,12 @@
 
 https://github.com/kik4/npm-evil-code-injection
 
+# ポイント
+
+1. 攻撃コードの暗号化
+2. 攻撃を実行するコードの require パスの隠蔽
+3. package.json の description を見て攻撃対象を限定
+
 # 攻撃手順
 
 ```ts
