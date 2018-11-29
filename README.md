@@ -148,7 +148,7 @@ library();
 
 ```
 // 期待する結果
-This is good code.
+// This is good code.
 
 // 実際の結果
 This is evil code.
