@@ -141,20 +141,16 @@ package.json では攻撃コードが実行されるように description を`ru
 
 ```ts
 import library from "library";
-
-console.log("Hello world!!");
 library();
 ```
 
-これを実行すると出力は以下の通りです。
+これを実行した出力結果は以下の通りです。
 
 ```
 // 期待する結果
-Hello world!!
 This is good code.
 
 // 実際の結果
-Hello world!!
 This is evil code.
 This is good code.
 ```
