@@ -15,7 +15,8 @@ https://github.com/kik4/npm-evil-code-injection
 
 # ポイント
 
-今回の攻撃では minify したコードにのみ攻撃コードが挿入されていました。ただ minify しただけでなく、一見してそれとわからないようにコードが隠蔽されていました。この記事で確かめる隠蔽手法は次の３つです。
+今回の攻撃では minify したコードにのみ攻撃コードが挿入されていました。ただ minify しただけでなく、一見してそれとわからないようにコードが隠蔽されていました。その手法を実際にやってみます。
+この記事で確かめる隠蔽手法は次の３つです。
 
 1. 攻撃コードの暗号化
 2. 攻撃実行コードの require パスの隠蔽
@@ -35,7 +36,7 @@ export default () => console.log("This is good code.");
 console.log("This is evil code.");
 ```
 
-上記の正常なコードに攻撃コードを忍ばせます。そしてこのパッケージを実行する npm パッケージの description が`run evil code`の時だけ攻撃コードが実行されるようにしましょう。
+上記の正常なコードに攻撃コードを忍ばせます。そしてこのパッケージを実行する npm パッケージの description が`run evil code`の時だけ攻撃コードが実行されるようにしていきます。
 
 ## 1. 攻撃コードの暗号化 & 3. description で攻撃対象を限定
 
@@ -51,7 +52,7 @@ var encoded = cipher.update(code, "utf8", "hex") + cipher.final("hex");
 encoded;
 ```
 
-結果は`cfdc36e155f1213c266810ac757ceb743e036c6aa08703d564010029511c7af099387eb23604e1b308233f4eba23dd0f`です。元の攻撃コードがわからなくなりました。
+結果は`cfdc36e155f1213c266810ac757ceb743e036c6aa08703d564010029511c7af099387eb23604e1b308233f4eba23dd0f`です。無事に元の攻撃コードがわからなくなりました。
 
 ## 2. 攻撃実行コードの require パスの隠蔽
 
