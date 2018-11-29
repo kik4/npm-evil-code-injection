@@ -44,14 +44,14 @@ console.log("This is evil code.");
 パスワードは description で起動させる`run evil code`です。次の項で書きますが復号化時に実行しているパッケージの description を拾って与えることで、攻撃対象を限定します。
 
 ```js
-var cipher = require("crypto").createCipher("aes-256-cbc", "run evil code");
-var encoded =
-  cipher.update('console.log("This is evil code.")', "utf8", "hex") +
-  cipher.final("hex");
+var code = 'console.log("This is evil code.")';
+var password = "run evil code";
+var cipher = require("crypto").createCipher("aes-256-cbc", password);
+var encoded = cipher.update(code, "utf8", "hex") + cipher.final("hex");
 encoded;
 ```
 
-結果は`cfdc36e155f1213c266810ac757ceb743e036c6aa08703d564010029511c7af099387eb23604e1b308233f4eba23dd0f`です。
+結果は`cfdc36e155f1213c266810ac757ceb743e036c6aa08703d564010029511c7af099387eb23604e1b308233f4eba23dd0f`です。元の攻撃コードがわからなくなりました。
 
 ## 2. 攻撃実行コードの require パスの隠蔽
 
@@ -69,7 +69,7 @@ export default () => {
 ```
 
 今回はこの require の中の文字列が hex エンコードされていました。./evil.ts をエンコードすると`2E2F6576696C`になります。
-これをデコード処理を入れて書き換えます。
+require の中にデコード処理を入れて書き換えます。
 
 ```ts
 export default () => {
