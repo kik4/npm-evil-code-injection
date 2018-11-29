@@ -18,7 +18,8 @@ https://github.com/kik4/npm-evil-code-injection
 2. 攻撃実行コードの require パスの隠蔽
 3. package.json の description を見て攻撃対象を限定
 
-バージョン操作やパッケージの publish などは取り扱いません。
+ここではバージョン操作やパッケージの publish などは取り扱いません。
+ついでに、特に理由はないんですが JavaScript ではなく TypeScript を使用しました。
 
 # 攻撃手順
 
