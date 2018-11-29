@@ -41,7 +41,7 @@ console.log("This is evil code.");
 
 まず攻撃コードを AES 暗号化します。暗号化は node コマンドで REPL を起動させてちゃっちゃとやってしまいます。
 暗号化する文字列は攻撃コードである`console.log("This is evil code.")`ですね。
-パスワードは description で起動させる`run evil code`です。複合化時に実行しているパッケージのdescriptionを拾って与えることで、攻撃対象を限定します。
+パスワードは description で起動させる`run evil code`です。複合化時に実行しているパッケージの description を拾って与えることで、攻撃対象を限定します。
 
 ```js
 var cipher = require("crypto").createCipher("aes-256-cbc", "run evil code");
