@@ -162,7 +162,7 @@ This is good code.
 ```
 
 無事に攻撃コードが実行されました！
-description を書き換えると`This is evil code.`が出てきません。ちゃんと攻撃対象を絞れました。
+description を書き換えると`This is evil code.`が出てきません。ちゃんと攻撃対象を絞れています。
 
 # 参考
 
