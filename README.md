@@ -57,7 +57,7 @@ encoded;
 ### index.ts
 
 正常なコードを書いたファイルを index.ts。攻撃コードを忍ばせ、攻撃を実行するコードを書いたファイルを data.ts とします。
-まずは index.ts から data.ts を require します。ただしトランスパイルされるので実際のファイル名は`./data.js`ですね。これの default の実行が攻撃コードの実行になります。
+まずは index.ts から data.ts を require します。ただしトランスパイルされるので実際のファイル名は`./data.js`ですね。これの default の実行が攻撃コードの実行です。
 
 ```ts
 export default () => {
@@ -127,7 +127,7 @@ export default () => {
 
 # 攻撃を受けてみる
 
-攻撃される側のパッケージを用意します。攻撃を仕込んだパッケージは公開してもしょうがないので今回はローカルインポートにします。
+攻撃される側のパッケージを用意します。攻撃を仕込んだパッケージは公開してもしょうがないので今回はローカルインポートにしました。
 package.json では攻撃コードが実行されるように description を`run evil code`にしておきます。
 
 ```json
@@ -142,7 +142,7 @@ package.json では攻撃コードが実行されるように description を`ru
 }
 ```
 
-実行コードはこんな感じ。
+実行コードは素朴にこんな感じ。
 
 ```ts
 import library from "library";
