@@ -5,10 +5,6 @@
 ⚠️ 今回は攻撃者がパッケージのメンテナであったために発生したことであり、この記事を読んで誰でも攻撃できるようになるわけではありません。
 ⚠️ 念のためですが、悪用しないようにお願いします。
 
-# 参考
-
-[2018/11/27 に判明した npm パッケージ乗っ取りについて](https://qiita.com/azs/items/b15bc456bee3a7892950)
-
 # コード
 
 https://github.com/kik4/npm-evil-code-injection
@@ -160,3 +156,7 @@ This is good code.
 
 無事に攻撃コードが実行されました！
 description を書き換えると`This is evil code.`が出てきません。ちゃんと攻撃対象を絞れました。
+
+# 参考
+
+[2018/11/27 に判明した npm パッケージ乗っ取りについて](https://qiita.com/azs/items/b15bc456bee3a7892950)
