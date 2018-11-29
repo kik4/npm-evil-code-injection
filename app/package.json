@@ -9,8 +9,8 @@
     "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
+    "library": "../library/",
     "ts-node": "^7.0.1",
-    "typescript": "^3.1.6",
-    "library": "../library"
+    "typescript": "^3.1.6"
   }
 }

